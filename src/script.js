@@ -6,7 +6,7 @@ import { gsap } from 'gsap'
 import { Sky } from 'three/examples/jsm/objects/Sky';
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { treeData } from './constances/tree-positions';
-import { cornPositions } from './constances/corn-positions';
+// import { cornPositions } from './constances/corn-positions';
 import { loadTerrain } from './loaders/load-train'
 import { loadTreesLOD } from './loaders/load-trees'
 import { loadCornsLOD } from './loaders/load-corns'
@@ -134,12 +134,15 @@ window.addEventListener('resize', () => {
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
 camera.position.set(-250, 20, 0)
-camera.lookAt(0, 0, 0)
+camera.lookAt(-250, 20, 0)
 scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-// controls.enableDamping = true
+controls.enableDamping = true
+controls.minPolarAngle = 0.5;
+controls.maxPolarAngle = Math.PI * 0.5 - 0.01;
+
 
 /**
  * Renderer
@@ -160,7 +163,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 const stats = new Stats();
 document.body.appendChild(stats.dom);
 
-
+scene.background = new THREE.Color(0xcccccc);
+scene.fog = new THREE.FogExp2(0xcccccc, 0.003);
 /**
  * Animate
  */

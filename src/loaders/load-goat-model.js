@@ -1,28 +1,34 @@
 import * as THREE from 'three'
 import { makeUrl } from "../constances/path-to-models";
 import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils';
-import { randomNumber } from '../constances/functions';
+import { randomNumber, randomRangeWithoutOverlap } from '../constances/functions';
 
 // 
 
-const usedPostion = [];
+
+const count = 9;
+const usedPostion = randomRangeWithoutOverlap({ x: -230, y: 0, z: 0 }, { x: -215, y: 0, z: 15 }, count, 2);
+console.log(usedPostion)
+
 export const loadGoatModel = (scene, gltfLoader, path, mixers) => {
   gltfLoader.load(
     makeUrl(path),
     (gltf) => {
       console.log(`${path} => `, gltf)
-      for (let i = 0; i < 9; i++) {
-
+      for (let i = 0; i < count; i++) {
+        console.log('add goat')
         const model = SkeletonUtils.clone(gltf.scene);
 
         const mixer = new THREE.AnimationMixer(model);
 
-        mixer.clipAction(gltf.animations[2]).play(); // idle
-        mixer.timeScale = Math.random();
+        setTimeout(() => {
+          mixer.clipAction(gltf.animations[2]).play(); // idle
+        }, Math.random() * 5000);
+        mixer.timeScale = randomNumber(0.5, 1);
 
-        model.position.x = randomNumber(-230, -215);
+        model.position.x = usedPostion[i].x
         model.position.y = -0.01;
-        model.position.z = randomNumber(0, 15);
+        model.position.z = usedPostion[i].z
 
         model.rotation.y = Math.random() * Math.PI
 
