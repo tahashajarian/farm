@@ -85,7 +85,7 @@ debugObject.envMapIntensity = 5
 
 loadTerrain(scene, gltfLoader, 'Terrain/Terrain');
 loadStable(scene, gltfLoader, 'Stable/Stable');
-// loadTreesLOD(scene, gltfLoader, 'Trees Level/Tree Level');
+loadTreesLOD(scene, gltfLoader, 'Trees Level/Tree Level');
 loadCornsLOD(scene, gltfLoader, 'Corn level/Corn level');
 loadCattleModel(scene, gltfLoader, 'Cattle/Cattle', mixers)
 loadGoatModel(scene, gltfLoader, 'goat/goat', mixers)

@@ -6,7 +6,7 @@ import { randomRangeWithoutOverlap } from '../constances/functions'
 // 
 
 
-const countCattle = 1;
+const countCattle = 20;
 const usedPostion = randomRangeWithoutOverlap({ x: -200, y: 0, z: -30 }, { x: -170, y: 0, z: 10 }, countCattle, 2.5);
 
 

@@ -5,8 +5,8 @@ import { makeUrl } from "../constances/path-to-models";
 
 let corns;
 
-const cornSize = 10
-const cornSize1 = 10;
+const cornSize = 10000
+const cornSize1 = 1;
 export const loadCornsLOD = (scene, gltfLoader, path) => {
 
     gltfLoader.load(
